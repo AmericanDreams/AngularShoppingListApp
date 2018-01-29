@@ -1,27 +1,40 @@
 <div class="row">
   <div class="col-md-12">
-    <img alt="" src="" class="img-responsive"/>
+    <img style="max-height: 300px;" alt="{{selectedRecipe.name}}" [src]="selectedRecipe.imagePath"  class="img-responsive"/>
   </div>
 </div>
 <div class="row">
   <div class="col-md-12">
-    <h1>Recipe Name</h1>
+    <h1>{{selectedRecipe.name}}</h1>
   </div>
 </div>
 <div class="row">
   <div class="col-md-12">
-    <div class="btn-group">
+    <div class="btn-group" appDropdownDirective>
       <button class="btn btn-primary dropdown-toggle">Manage Recipe <span class="caret"></span></button>
       <ul class="dropdown-menu">
-        <li><a href="#">To Shopping List</a> </li>
-        <li><a href="#">Edit Recipe</a> </li>
-        <li><a href="#">Delete Recipe</a> </li>
+        <li><a style="cursor: pointer;"  (click)="whenAddToShoppingListBtnClick()">Add To Shopping List</a> </li>
+        <li><a style="cursor: pointer;" (click)="whenEditRecipeBtnClick()">Edit Recipe</a> </li>
+        <li><a style="cursor: pointer;">Delete Recipe</a> </li>
       </ul>
     </div>
   </div>
 </div>
 <div class="row">
   <div class="col-md-12">
-    <p>Recipe Description</p>
+    <p>{{selectedRecipe.description}}</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item" *ngIf="selectedRecipe.ingridients.length ==0">
+        There is not any Recipe
+      </li>
+
+      <li class="list-group-item" *ngFor="let ingridient of selectedRecipe.ingridients">
+        {{ingridient.name}} - {{ingridient.amout}}
+      </li>
+    </ul>
   </div>
 </div>
